@@ -17,7 +17,7 @@ public class CartController {
   @Autowired
     CartService cartService;
 
-    @GetMapping("/cartofUser")
+    @GetMapping("/cartOfUser")
     Cart getCardById(@RequestParam String userId){
 
        return cartService.getCartByUserId(userId);

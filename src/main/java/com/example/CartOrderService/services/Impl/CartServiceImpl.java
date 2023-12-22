@@ -30,7 +30,7 @@ public class CartServiceImpl implements CartService {
        Cart newCart = new Cart();
          List<CartItem> cartItems = new ArrayList<>();
          cartItems.add(cartItem);
-       newCart.setCartItemList(cartItems);
+       newCart.getCartItemList().add(cartItem);
        newCart.setUserId(userId);
        newCart.setCartId("2");
        cartRepositry.save(newCart);

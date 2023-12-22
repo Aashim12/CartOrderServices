@@ -2,7 +2,9 @@ package com.example.CartOrderService.controller;
 
 import com.example.CartOrderService.dto.responses.OrderHistoryResponseDto;
 import com.example.CartOrderService.entity.CartItem;
+import com.example.CartOrderService.entity.Merchant;
 import com.example.CartOrderService.entity.OrderHistory;
+import com.example.CartOrderService.entity.Product;
 import com.example.CartOrderService.services.OrderHistoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -16,7 +18,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping("/orderhistory")
+@RequestMapping("/orderHistory")
 public class OrderHistoryController {
     @Autowired
     OrderHistoryService orderHistoryService;
@@ -36,5 +38,25 @@ public class OrderHistoryController {
                 return new ResponseEntity<>(postOrder,HttpStatus.ACCEPTED);
       }
 
+      @GetMapping("/getMerchantDetails")
+       ResponseEntity<Merchant> getMerchantDetails(@RequestParam String merchantId){
+
+        Merchant merchant = orderHistoryService.getMerchantById(merchantId);
+
+        if(merchant!=null)
+            return new ResponseEntity<>(merchant,HttpStatus.ACCEPTED);
+        else
+            return new ResponseEntity<>(merchant,HttpStatus.ACCEPTED);
+      }
+
+    @GetMapping("/getProductDetails")
+    ResponseEntity<Product> getProductDetails(@RequestParam String prodcutId){
+
+        Product product  = orderHistoryService.getProductById(prodcutId);
+        if(product!=null)
+            return new ResponseEntity<>(product,HttpStatus.ACCEPTED);
+        else
+            return new ResponseEntity<>(product,HttpStatus.ACCEPTED);
+    }
 }
 

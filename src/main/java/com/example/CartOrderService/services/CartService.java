@@ -3,6 +3,7 @@ package com.example.CartOrderService.services;
 
 import com.example.CartOrderService.entity.Cart;
 import com.example.CartOrderService.entity.CartItem;
+import com.example.CartOrderService.entity.Product;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 public interface CartService {
@@ -14,4 +15,5 @@ Boolean addProduct(String userId,String productId,String quantity);
 Boolean incrementQuantity(String userId,String productId);
 Boolean decrementQuantity(String userId,String productId);
 int calculateTotalCost();
+
 }

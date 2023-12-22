@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @Document(collection = "carts")
 public class Cart {
-    @nonapi.io.github.classgraph.json.Id
+    @Id
     private String cartId;
     private String userId;
     private List<CartItem> cartItemList ;

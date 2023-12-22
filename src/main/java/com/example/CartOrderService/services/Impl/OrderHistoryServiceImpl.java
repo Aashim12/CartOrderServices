@@ -2,7 +2,10 @@ package com.example.CartOrderService.services.Impl;
 
 import com.example.CartOrderService.dto.responses.OrderHistoryResponseDto;
 import com.example.CartOrderService.entity.CartItem;
+import com.example.CartOrderService.entity.Merchant;
 import com.example.CartOrderService.entity.OrderHistory;
+import com.example.CartOrderService.entity.Product;
+import com.example.CartOrderService.feignClient.CartFeign;
 import com.example.CartOrderService.repositry.OrderHistoryRepositry;
 import com.example.CartOrderService.services.OrderHistoryService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +23,8 @@ public class OrderHistoryServiceImpl implements OrderHistoryService {
  @Autowired
     OrderHistoryRepositry orderHistoryRepositry;
 
+ @Autowired
+    CartFeign cartFeign;
 
     @Override
     public List<OrderHistoryResponseDto> getOrderHistory(String userId) {
@@ -47,5 +52,15 @@ public class OrderHistoryServiceImpl implements OrderHistoryService {
         newOrder.setCartItemList(cartItemList);
         orderHistoryRepositry.save(newOrder);
        return true;
+    }
+
+    @Override
+    public Product getProductById(String prodcutId) {
+        return cartFeign.getProductById(prodcutId);
+    }
+
+    @Override
+    public Merchant getMerchantById(String merchantId) {
+        return cartFeign.getMerchantById(merchantId);
     }
 }
